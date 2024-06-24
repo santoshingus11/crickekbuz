@@ -36,7 +36,7 @@ class HomeController extends Controller
         $response=json_decode($result, true);
         
         curl_close($ch);
-        
+     
         
         //get Games list
         $gm = curl_init();
@@ -53,7 +53,7 @@ class HomeController extends Controller
         $game_single=json_decode($res, true);
         
         curl_close($gm);
-
+     
 // if ($game_id == 1) {
 //             return view('client.Cricket-details-ipl', compact('response', 'game_single'));
 //         }

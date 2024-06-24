@@ -100,7 +100,7 @@
                   <div class="d-flex flex-column h-full align-items-center justify-content-center"><img class="img-fluid" src="{{asset('/')}}/assets/img/icons/98788.png"><!----><b>Roulette</b></div><!----><!---->
                 </a></li><!---->
             </ul>
-            @foreach($response as $r)
+            @foreach($allGames['crickets'] as $r)
             <div class="tab-content">
               <tab role="tabpanel" aria-labelledby="" class="tab-pane active"><!---->
                 <div>

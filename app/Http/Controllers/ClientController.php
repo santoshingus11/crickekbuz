@@ -171,7 +171,7 @@ class ClientController extends Controller
             'liveGames' => $liveEvolutionLobbyGames,
             // 'sportBetGames' => $sportBetGames
         ];
-        
+      
         
         return view('client.home',compact('response','allGames'))->with('data',$data);
     }
