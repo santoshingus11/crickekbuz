@@ -53,11 +53,14 @@ class HomeController extends Controller
         $game_single=json_decode($res, true);
         
         curl_close($gm);
-     
+      // Check if the request is an AJAX call
+    if (request()->ajax()) {
+        return response()->json(['response' => $response, 'game_single' => $game_single]);
+    }
 // if ($game_id == 1) {
 //             return view('client.Cricket-details-ipl', compact('response', 'game_single'));
 //         }
-        return view('client.Cricket-details',compact('response','game_single'));
+        return view('client.Cricket-details',compact('response','game_id','game_single'));
     }
     
     public function cricket_bet_place(Request $request){
