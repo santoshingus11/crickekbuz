@@ -61,23 +61,9 @@ Route::get('/coc', function () {
 });
 
 Route::get('/', [ClientController::class, 'client_login'])->name('login');
-Route::get('/live', [ClientController::class, 'live'])->name('live');
-use App\Http\Controllers\ProxyController;
-
-Route::get('/proxy', [ProxyController::class, 'fetch']);
-
-
 // Route::get('/slot-games',[ClientController::class,'slotgames'])->name('slot_games.home');
 
 Route::post('client-submit', [ClientController::class, 'login_submit'])->name('login_submit');
-
-    Route::get('cricket/track-match-result',[HomeController::class,'trackCricketMatchResult'])->name('track.cricket.match.result');
-    Route::get('football/track-match-result',[HomeController::class,'trackFootballMatchResult'])->name('track.football.match.result');
-    Route::get('tennis/track-match-result',[HomeController::class,'trackTennisMatchResult'])->name('track.tennis.match.result');
-    Route::get('horseracing/track-match-result',[HomeController::class,'trackHorseRacingMatchResult'])->name('track.horseracing.match.result');
-    Route::get('greyhoundracing/track-match-result',[HomeController::class,'trackGreyhoundRacingMatchResult'])->name('track.greyhoundracing.match.result');
-    
-    
 Route::middleware('client.login.check')->group(function () {
     
     Route::get('/exitGame',[ClientController::class,'slotgames']);
@@ -91,6 +77,7 @@ Route::middleware('client.login.check')->group(function () {
     
     Route::get('client',[ClientController::class,'client'])->name('client-home');
     Route::get('cricket-details/{game_id?}',[HomeController::class,'cricket_details'])->name('Cricket-details');
+    Route::get('cricket_details_ajax/{game_id?}',[HomeController::class,'cricket_details_ajax']);
     Route::post('cricket/bet-place',[HomeController::class,'cricket_bet_place'])->name('cricket-bet-place');
     
     
@@ -154,7 +141,7 @@ Route::middleware('client.login.check')->group(function () {
     Route::get('queen_result', [HomeController::class, 'queen_result'])->name('queen-result');
     Route::get('andarbahar_result', [HomeController::class, 'andarbahar_result'])->name('andarbahar-result');
     Route::get('home',[HomeController::class,'home'])->name('home');
-    Route::get('mybets',[HomeController::class,'mybets'])->name('my-bets');
+    // Route::get('mybets',[HomeController::class,'mybets'])->name('my-bets');
     Route::get('secureauth',[HomeController::class,'secureauth'])->name('secureauth');
     Route::get('message',[HomeController::class,'message'])->name('message');
     Route::get('profit-loss',[HomeController::class,'loss_profit'])->name('profit_loss');
@@ -176,10 +163,9 @@ Route::group(['prefix' => 'admin'], function () {
 
  
     Route::middleware('agent.login.check')->group(function () {
-         Route::get('new_admin', [AdminController::class, 'new_admin'])->name('new_admin');
+             Route::get('new_admin', [AdminController::class, 'new_admin'])->name('new_admin');
         Route::post('new_admin_store', [AdminController::class, 'new_admin_store'])->name('new_admin_store');
 
-        
         
     Route::get('agent-home', [AdminController::class, 'agent'])->name('agent-home');    
     Route::get('admin-logout',[AdminController::class,'logout'])->name('admin-logout');
@@ -315,7 +301,7 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('agent-listing2',[AdminController::class,'demo_1'])->name('agent-listing2');
     Route::any('agent-listing',[AdminController::class,'agent_listing'])->name('agent-listing');
     Route::get('agent-listing-demoag5/{id}',[AdminController::class,'demo_4'])->name('agent-listing-demoag5');
-    Route::get('admin_delete/{id}',[AdminController::class,'admin_delete'])->name('admin_delete');
+    Route::get('agent-listing-demoag55/{id}',[AdminController::class,'demo_44'])->name('agent-listing-demoag55');
     Route::get('create-new-user',[AdminController::class,'new_user'])->name('create-new-user');
     Route::get('race20',[AdminController::class,'race20'])->name('admin-race-20');
     Route::get('new-agent',[AdminController::class,'new_agent'])->name('new-agent');

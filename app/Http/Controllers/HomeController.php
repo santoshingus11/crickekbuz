@@ -19,7 +19,7 @@ use App\Models\BetRecord;
 class HomeController extends Controller
 {
     
-    public function cricket_details($game_id){
+    public function cricket_details(Request $request,$game_id){
         
         //get match list
         $ch = curl_init();
@@ -36,7 +36,7 @@ class HomeController extends Controller
         $response=json_decode($result, true);
         
         curl_close($ch);
-     
+        
         
         //get Games list
         $gm = curl_init();
@@ -53,14 +53,17 @@ class HomeController extends Controller
         $game_single=json_decode($res, true);
         
         curl_close($gm);
-      // Check if the request is an AJAX call
-    if (request()->ajax()) {
-        return response()->json(['response' => $response, 'game_single' => $game_single]);
-    }
+        if ($request->ajax()) {
+            return response()->json([
+                'response' => $response,
+                'game_single' => $game_single,
+                'game_id' => $game_id,
+            ]);
+          }
 // if ($game_id == 1) {
 //             return view('client.Cricket-details-ipl', compact('response', 'game_single'));
 //         }
-        return view('client.Cricket-details',compact('response','game_id','game_single'));
+        return view('client.Cricket-details',compact('response','game_single','game_id'));
     }
     
     public function cricket_bet_place(Request $request){
@@ -102,15 +105,10 @@ class HomeController extends Controller
         $placeBet->user_id = $user_id;
         $placeBet->team_name = $request->bet_team_name;
         $placeBet->save();
-       
-      
-       
-        $user = Admin::where('id', Auth::guard('client')->user()->id)->first();
-        $balance = $user->balance - $request->bet_stake;
-         Admin::where('id', Auth::guard('client')->user()->id)->update(['balance' => $balance]); 
-       
-        // $user->balance = $user->balance - $request->bet_stake;
-        // $user->save();
+        
+        $user = Admin::findOrFail($user_id);
+        $user->balance = $user->balance - $request->bet_stake;
+        $user->save();
         
         $played_matches = CricketPlaceBet::where('user_id',$user_id)->where('bet_result',null)->orderBy('id','desc')->get();
         
@@ -161,7 +159,7 @@ class HomeController extends Controller
         
     }
     
-    public function football_details($game_id){
+    public function football_details(Request $request,$game_id){
         
          $ch = curl_init();
         // Disable SSL verification
@@ -201,7 +199,7 @@ class HomeController extends Controller
         $result=curl_exec($ch);
         $response=json_decode($result, true);
         curl_close($ch);
-        
+      
         //get Games list
         $gm = curl_init();
         curl_setopt($gm, CURLOPT_SSL_VERIFYPEER, false);
@@ -211,8 +209,14 @@ class HomeController extends Controller
         $res=curl_exec($gm);
         $game_single=json_decode($res, true);
         curl_close($gm);
-        
-        return view('client.Football-Details',compact('response','game_single','allGames'));
+        if ($request->ajax()) {
+            return response()->json([
+                'response' => $response,
+                'game_single' => $game_single,
+                'game_id' => $game_id,
+            ]);
+          }
+        return view('client.Football-Details',compact('response','game_single','allGames','game_id'));
     }
     
     public function football_bet_place(Request $request){
@@ -222,7 +226,7 @@ class HomeController extends Controller
         }
         
         $user_id =  Auth::guard('client')->user()->id;
-        
+     
         $placeBet = new FootballPlaceBet();
         $placeBet->match_id = $request->match_id;
         $placeBet->bet_odds = $request->bet_odds;
@@ -234,9 +238,13 @@ class HomeController extends Controller
         $placeBet->save();
         
         $user = Admin::findOrFail($user_id);
-        $user->balance = $user->balance - $request->bet_stake;
-        $user->save();
-        
+        $update_balance = [
+                'balance' => $user->balance - $request->bet_stake
+            ];
+       Admin::where('id',$user_id)->update($update_balance);
+        // $user->balance = $user->balance - $request->bet_stake;
+        // $user->save();
+       
         $played_matches = FootballPlaceBet::where('user_id',$user_id)->where('bet_result',null)->orderBy('id','desc')->get();
         
         return redirect()->back()->with(['message'=>'Bet placed successfully','myBets'=>$played_matches]);
@@ -279,7 +287,7 @@ class HomeController extends Controller
         return view('client.Tennis',compact('response','allGames'));
     }
     
-    public function tennis_details($game_id){
+    public function tennis_details(Request $request,$game_id){
          $ch = curl_init();
         // Disable SSL verification
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
@@ -328,8 +336,14 @@ class HomeController extends Controller
         $res=curl_exec($gm);
         $game_single=json_decode($res, true);
         curl_close($gm);
-        
-        return view('client.Tennis-details',compact('response','game_single','allGames'));
+        if ($request->ajax()) {
+            return response()->json([
+                'response' => $response,
+                'game_single' => $game_single,
+                'game_id' => $game_id,
+            ]);
+          }
+        return view('client.Tennis-details',compact('response','game_single','allGames','game_id'));
     }
     
     public function tennis_bet_place(Request $request){
@@ -533,7 +547,8 @@ class HomeController extends Controller
     
     public function account_settlement() {
           $bankingHistories = BankingHistory::where('user_id',Auth::guard('client')->user()->id)->orderBy('banking_history_id','desc')->get();
-        return view('client.account_settlement',compact('bankingHistories'));
+
+          return view('client.account_settlement',compact('bankingHistories'));
     }
     
     function change_pass() {
@@ -823,5 +838,155 @@ class HomeController extends Controller
         if($get_bet_result=='lay'){
             $winLoss = 'back';
         }
+        
+        $LoseResults = GreyhoundRacingPlaceBet::where('match_id',$get_match_id)->where('bet_result',null)->where('back_lay',$winLoss)->get();
+        
+        if(!empty($LoseResults)){
+           foreach($LoseResults as $LoseResult){
+               $LoseResult->bet_result = 2; // 2=Lose
+               $LoseResult->save();
+           }
+        } 
     }
+   
+   
+    
+    
+    
+    
+    
+    
+    public function cricket_details_ipl(){
+        return view('client.cricket_details_ipl');
+    }
+    
+    
+    
+    
+    public function index(){
+        return view('client.home');
+    }
+    public function home(){
+        return view('client.home');
+    }
+    public function changepassword(){
+        return view('client.changepassword');
+    }
+    public function transferstatement(){
+        return view('client.transferstatement');
+    }
+    public function mybets(){
+        return view('client.mybets');
+    }
+    public function loss_profit(){
+        return view('client.profitloss');
+    }
+    public function secureauth(){
+        return view('client.secureauth');
+    }
+    public function message(){
+        return view('client.message');
+    }
+    public function statement(){
+        return view('client.accountstatement');
+    }
+    public function cric_ket(){
+        return view('client.cricket');
+    }
+    public function tenis(){
+        return view('client.table-tennis');
+    }
+    public function dart(){
+        return view('client.darts');
+    }
+    public function badmint_on(){
+        return view('client.badminton');
+    }
+    public function kaba_ddi(){
+        return view('client.Kabaddi');
+    }
+    public function queen_result(){
+        return view('client.queen-results');
+    }
+    public function boxi_ng(){
+        return view('client.boxing');
+    }
+    public function artss(){
+        return view('client.arts');
+    }
+    public function motor_sport(){
+        return view('client.Motor-Sport');
+    }
+    public function basketball(){
+        return view('client.basketball');
+    }
+    public function election(){
+        return view('client.election2023');
+    }
+    public function icc(){
+        return view('client.Icc2023');
+    }
+    public function lottery(){
+        return view('client.lottery');
+    }
+    public function casino(){
+        return view('client.live-casino');
+    }
+     public function details4(){
+        return view('client.Cricket-details-pages-4');
+    }
+     public function details3(){
+        return view('client.Cricket-details-pages-3');
+    }
+    public function details2(){
+        return view('client.Cricket-details-pages-2');
+    }
+    public function details(){
+        return view('client.Cricket-details');
+    }
+    public function basket_details(){
+        return view('client.basketball-details');
+    }
+    public function kabaddi_details(){
+        return view('client.Kabaddi-details');
+    }
+    public function race20(){
+        return view('client.race20');
+    }
+    public function queen_20(){
+        return view('client.queen');
+    }
+    public function andarbahar2(){
+        return view('client.andarbahar2');
+    }
+    public function dragon_tiger(){
+        return view('client.20-20-dragon-tiger');
+    }
+    public function casino_result(){
+        return view('client.casino-results');
+    }
+    public function andarbahar_result(){
+        return view('client.andarbahar-results');
+    }
+    public function tiger_result(){
+        return view('client.tiger-results');
+    }
+
+
+
+    public function casino_detail(){
+        return view('client.casino.live-casino-detail');
+    }
+    public function cricket_detail(){
+        return view('client.cricket_detail');
+    }
+    public function one_day_teen_patti(){
+        return view('client.one_day_teen_patti');
+    }
+    public function roullete(){
+        return view('client.roullete');
+    }
+    
+    
+
 }
