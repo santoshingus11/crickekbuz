@@ -373,5 +373,5 @@ console.log(profit);
         var amnt = parseFloat($(this).val()) || 0;
         updateProfit(amnt);
     });
-</script>
+</script> 
 @endsection
