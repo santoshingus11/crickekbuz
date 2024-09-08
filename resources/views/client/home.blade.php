@@ -14,7 +14,7 @@
 
   <app-sport-list>
 
-    <div class="listing_screen"><!---->
+    <div class="listing_screen">
 
       <div class="w-100 d-flex flex-nowrap overflow-auto gap-2 pt-1 pb-1 top-nav-event-1 d-none d-md-flex">
         @if(!empty($allGames['crickets']))
@@ -65,16 +65,16 @@
       <div class="mobile-sec ds-block-mobile">
         <tabset type="pills nav-fill inplayTabs_list" _nghost-whm-c35="" class="tab-container">
           <ul role="tablist" class="nav nav-pills nav-fill inplayTabs_list" aria-label="Tabs">
-            <li class="nav-item active"><a href="{{route('client-home')}}" role="tab" class="nav-link active" aria-controls="tab0" aria-selected="true" id="tab0-link"><span>IN-PLAY</span><!----><!----></a></li>
-            <li class="nav-item"><a href="{{route('client-home')}}" role="tab" class="nav-link" aria-controls="tab1" aria-selected="false" id="tab1-link"><span>SPORTS</span><!----><!----></a></li>
-            <li class="nav-item"><a href="{{route('our_casino')}}" role="tab" class="nav-link" aria-controls="tab2" aria-selected="false" id="tab2-link"><span>OUR CASINO</span><!----><!----></a></li>
+            <li class="nav-item active"><a href="{{route('client-home')}}" role="tab" class="nav-link active" aria-controls="tab0" aria-selected="true" id="tab0-link"><span>IN-PLAY</span></a></li>
+            <li class="nav-item"><a href="{{route('client-home')}}" role="tab" class="nav-link" aria-controls="tab1" aria-selected="false" id="tab1-link"><span>SPORTS</span></a></li>
+            <li class="nav-item"><a href="{{route('our_casino')}}" role="tab" class="nav-link" aria-controls="tab2" aria-selected="false" id="tab2-link"><span>OUR CASINO</span></a></li>
             <!-- <li class="nav-item"><a href="https://crickekbuz.art/slot/game/lounch/9673" role="tab" class="nav-link" aria-controls="tab5" aria-selected="false" id="tab5-link"><span>FANTACY</span></a></li> -->
           </ul>
           <div class="tab-content">
-            <tab role="tabpanel" aria-labelledby="tab0-link" id="tab0" class="tab-pane active"></tab><!----><!---->
-            <tab role="tabpanel" aria-labelledby="tab1-link" id="tab1" class="tab-pane"></tab><!----><!---->
-            <tab role="tabpanel" aria-labelledby="tab2-link" id="tab2" class="tab-pane"></tab><!----><!----><!----><!----><!----><!---->
-            <tab role="tabpanel" aria-labelledby="tab5-link" id="tab5" class="tab-pane"></tab><!----><!----><!---->
+            <tab role="tabpanel" aria-labelledby="tab0-link" id="tab0" class="tab-pane active"></tab>
+            <tab role="tabpanel" aria-labelledby="tab1-link" id="tab1" class="tab-pane"></tab>
+            <tab role="tabpanel" aria-labelledby="tab2-link" id="tab2" class="tab-pane"></tab>
+            <tab role="tabpanel" aria-labelledby="tab5-link" id="tab5" class="tab-pane"></tab>
           </div>
         </tabset>
       </div>
@@ -83,37 +83,38 @@
           <tabset type="pills nav-fill" _nghost-nyb-c35="" class="tab-container">
             <ul role="tablist" class="nav nav-pills nav-fill" aria-label="Tabs">
               <li class="active nav-item"><a href="{{route('client-home')}}" role="tab" class="nav-link active" aria-controls="" aria-selected="true" id=""><span></span>
-                  <div class="d-flex flex-column h-full align-items-center justify-content-center"><img class="img-fluid" src="{{asset('/')}}/assets/img/icons/4.png"><!----><b>Cricket</b></div><!----><!---->
+                  <div class="d-flex flex-column h-full align-items-center justify-content-center"><img class="img-fluid" src="{{asset('/')}}/assets/img/icons/4.png"><b>Cricket</b></div>
                 </a></li>
               <li class="nav-item"><a href="{{route('football-frontend')}}" role="tab" class="nav-link" aria-controls="" aria-selected="false" id=""><span></span>
-                  <div class="d-flex flex-column h-full align-items-center justify-content-center"><img class="img-fluid" src="{{asset('/')}}/assets/img/icons/1.png"><!----><b>Football</b></div><!----><!---->
+                  <div class="d-flex flex-column h-full align-items-center justify-content-center"><img class="img-fluid" src="{{asset('/')}}/assets/img/icons/1.png"><b>Football</b></div>
                 </a></li>
               <li class="nav-item"><a href="{{route('tennis-frontend')}}" role="tab" class="nav-link" aria-controls="" aria-selected="false" id=""><span></span>
-                  <div class="d-flex flex-column h-full align-items-center justify-content-center"><img class="img-fluid" src="{{asset('/')}}/assets/img/icons/2.png"><!----><b>Tennis</b></div><!----><!---->
+                  <div class="d-flex flex-column h-full align-items-center justify-content-center"><img class="img-fluid" src="{{asset('/')}}/assets/img/icons/2.png"><b>Tennis</b></div>
                 </a></li>
               <li class="nav-item"><a href="{{route('horse')}}" role="tab" class="nav-link" aria-controls="" aria-selected="false" id=""><span></span>
-                  <div class="d-flex flex-column h-full align-items-center justify-content-center"><img class="img-fluid" src="{{asset('/')}}/assets/img/icons/7.png"><!----><b>Horse Racing</b></div><!----><!---->
+                  <div class="d-flex flex-column h-full align-items-center justify-content-center"><img class="img-fluid" src="{{asset('/')}}/assets/img/icons/7.png"><b>Horse Racing</b></div>
                 </a></li>
               <li class="nav-item"><a href="{{route('greyhound')}}" role="tab" class="nav-link" aria-controls="" aria-selected="false" id=""><span></span>
-                  <div class="d-flex flex-column h-full align-items-center justify-content-center"><img class="img-fluid" src="{{asset('/')}}/assets/img/icons/4339.png"><!----><b>Greyhound Racing</b></div><!----><!---->
+                  <div class="d-flex flex-column h-full align-items-center justify-content-center"><img class="img-fluid" src="{{asset('/')}}/assets/img/icons/4339.png"><b>Greyhound Racing</b></div>
                 </a></li>
               <li class="nav-item"><a href="https://crickekbuz.art/slot/game/lounch/9280" role="tab" class="nav-link" aria-controls="" aria-selected="false" id=""><span></span>
-                  <div class="d-flex flex-column h-full align-items-center justify-content-center"><img class="img-fluid" src="{{asset('/')}}/assets/img/icons/56767.png"><!----><b>Teenpatti</b></div><!----><!---->
+                  <div class="d-flex flex-column h-full align-items-center justify-content-center"><img class="img-fluid" src="{{asset('/')}}/assets/img/icons/56767.png"><b>Teenpatti</b></div>
                 </a></li>
               <li class="nav-item"><a href="https://crickekbuz.art/slot/game/lounch/9673" role="tab" class="nav-link" aria-controls="" aria-selected="false" id=""><span></span>
-                  <div class="d-flex flex-column h-full align-items-center justify-content-center"><img class="img-fluid" src="{{asset('/')}}/assets/img/icons/98788.png"><!----><b>Roulette</b></div><!----><!---->
-                </a></li><!---->
+                  <div class="d-flex flex-column h-full align-items-center justify-content-center"><img class="img-fluid" src="{{asset('/')}}/assets/img/icons/98788.png"><b>Roulette</b></div>
+                </a></li>
             </ul>
-            @if(!empty($response))
+            <div id="game-list-container"></div>
+            <!-- @if(!empty($response))
             @foreach($response as $r)
             <div class="tab-content">
-              <tab role="tabpanel" aria-labelledby="" class="tab-pane active"><!---->
+              <tab role="tabpanel" aria-labelledby="" class="tab-pane active">
                 <div>
                   <div class="row th-head">
                     <div class="col-lg-7 col-md-5 col-6">
                       <p>games</p>
                     </div>
-                    <div class="col-lg-5 col-md-7 col-12 text-center px-xl-0"><span>1</span><span>X</span><span>2</span></div><!---->
+                    <div class="col-lg-5 col-md-7 col-12 text-center px-xl-0"><span>1</span><span>X</span><span>2</span></div>
                   </div>
                   <div class="row td-body" tabindex="0">
                     @php
@@ -124,37 +125,37 @@
 
                     <div class="col-md-4 col-lg-5 col-6 cursor"><a href="{{ route('Cricket-details',$r['id']) }}">
                         <p> {{$r['game_title']}}<span>&nbsp;/&nbsp;</span><b>{{$r['datetimeGMT']}} (IST)</b></p>
-                      </a><!----></div>
+                      </a></div>
 
                     <div class="col-md-1 col-lg-2 col-6 px-lg-0">
-                      <div class="game-icons"><span class="game-icon"><span @if($r['channel_id']!="") class="active" @endif></span><!----></span><span class="game-icon"><i class="fa fa-tv v-m icon-tv cursor loginButton"></i><!----></span><span class="game-icon"><img src="{{asset('/')}}/assets/img/icons/ic_fancy.png" class="fancy-icon cursor"><!----></span><span class="game-icon"><img src="{{asset('/')}}/assets/img/icons/ic_bm.png" class="bookmaker-icon cursor"><!----></span></div><!---->
+                      <div class="game-icons"><span class="game-icon"><span @if($r['channel_id']!="") class="active" @endif></span></span><span class="game-icon"><i class="fa fa-tv v-m icon-tv cursor loginButton"></i></span><span class="game-icon"><img src="{{asset('/')}}/assets/img/icons/ic_fancy.png" class="fancy-icon cursor"></span><span class="game-icon"><img src="{{asset('/')}}/assets/img/icons/ic_bm.png" class="bookmaker-icon cursor"></span></div>
                     </div>
-                    <div class="col-md-4 col-12 d-sm-none d-block th-head text-center"><span>1</span><span>X</span><span>2</span></div><!---->
+                    <div class="col-md-4 col-12 d-sm-none d-block th-head text-center"><span>1</span><span>X</span><span>2</span></div>
                     <div class="col-md-7 col-lg-5 col-12 pr-xl-0">
 
                       @if($r['status']==1)
                       <a href="{{ route('Cricket-details',$r['id']) }}">
                         <div class="list-event-odds">
-                          <div class="btn-grp-cs"><button class="back"><span class="odd">1.99</span></button><button class="lay"><span class="odd">2</span></button><!----></div>
-                          <div class="btn-grp-cs"><button class="back"><span class="odd">-</span></button><button class="lay"><span class="odd">-</span></button><!----></div>
-                          <div class="btn-grp-cs"><button class="back"><span class="odd">2</span></button><button class="lay"><span class="odd">2.02</span></button><!----></div><!---->
+                          <div class="btn-grp-cs"><button class="back"><span class="odd">1.99</span></button><button class="lay"><span class="odd">2</span></button></div>
+                          <div class="btn-grp-cs"><button class="back"><span class="odd">-</span></button><button class="lay"><span class="odd">-</span></button></div>
+                          <div class="btn-grp-cs"><button class="back"><span class="odd">2</span></button><button class="lay"><span class="odd">2.02</span></button></div>
                         </div>
-                      </a><!---->
+                      </a>
                       @else
                       <div class="list-event-odds">
-                        <div class="btn-grp-cs"><button class="back"><span class="odd">1.99</span></button><button class="lay"><span class="odd">2</span></button><!----></div>
-                        <div class="btn-grp-cs"><button class="back"><span class="odd">-</span></button><button class="lay"><span class="odd">-</span></button><!----></div>
-                        <div class="btn-grp-cs"><button class="back"><span class="odd">2</span></button><button class="lay"><span class="odd">2.02</span></button><!----></div><!---->
+                        <div class="btn-grp-cs"><button class="back"><span class="odd">1.99</span></button><button class="lay"><span class="odd">2</span></button></div>
+                        <div class="btn-grp-cs"><button class="back"><span class="odd">-</span></button><button class="lay"><span class="odd">-</span></button></div>
+                        <div class="btn-grp-cs"><button class="back"><span class="odd">2</span></button><button class="lay"><span class="odd">2.02</span></button></div>
                       </div>
                       @endif
 
                     </div>
-                  </div><!---->
-                </div><!----><!----><!---->
-              </tab><!---->
+                  </div>
+                </div>
+              </tab>
             </div>
             @endforeach
-            @endif
+            @endif -->
           </tabset>
         </div>
       </div>
@@ -162,12 +163,12 @@
       <div role="tabpanel" aria-labelledby="inplay-tab" class="tab-pane fade show active ds-none">
         <div class="games-tabsList">
           <tabset type="pills nav-fill" _nghost-nyb-c35="" class="tab-container">
-            <ul role="tablist" class="nav nav-pills nav-fill" aria-label="Tabs"><!----></ul>
-            <div class="tab-content"><!----><!----><!----><!----></div>
+            <ul role="tablist" class="nav nav-pills nav-fill" aria-label="Tabs"></ul>
+            <div class="tab-content"></div>
           </tabset>
         </div>
-      </div><!---->
-    </div><!---->
+      </div>
+    </div>
 
     <div class="dash_casino">
       <h2>Our Casino</h2>
@@ -182,13 +183,18 @@
         @endforeach
         @endif
       </div>
-    </div><!----><!----><!---->
-  </app-sport-list><!---->
+    </div>
+  </app-sport-list>
 
 
 </div>
 
-
+<!-- Loader -->
+<div id="loader" style="position: fixed; left: 0; top: 0; width: 100%; height: 100%; background: rgba(255,255,255,0.8); z-index: 9999; display: flex; align-items: center; justify-content: center;">
+    <div class="spinner-border" role="status">
+        <span class="visually-hidden">Loading...</span>
+    </div>
+</div>
 
 @endsection
 @section('script')
@@ -199,6 +205,107 @@
 </script>
 <script>
   /* Script Goes Here */
+  $(document).ready(function() {
+       $('#loader').show();
+    // Function to fetch data
+    function fetchGameData() {
+      $.ajax({
+        url: "{{ route('cricker_games_api') }}", // Your route here
+        type: 'GET',
+        dataType: 'json',
+        success: function(data) {
+          // Clear the container before appending new data
+         
+
+          // Iterate over the response data and append HTML
+          if (data.response && data.response.length > 0) {
+               $('#game-list-container').empty();
+            data.response.forEach(function(r) {
+              // Build the HTML structure
+              let gameHtml = `
+                            <div class="tab-content">
+                                <tab role="tabpanel" class="tab-pane active">
+                                    <div>
+                                        <div class="row th-head">
+                                            <div class="col-lg-7 col-md-5 col-6">
+                                                <p>Games</p>
+                                            </div>
+                                            <div class="col-lg-5 col-md-7 col-12 text-center px-xl-0">
+                                                <span>1</span><span>X</span><span>2</span>
+                                            </div>
+                                        </div>
+                                        <div class="row td-body" tabindex="0">
+                                            <div class="col-md-4 col-lg-5 col-6 cursor">
+                                                <a href="{{ route('Cricket-details', '') }}/${r.id}">
+                                                    <p>${r.game_title}<span>&nbsp;/&nbsp;</span>
+                                                    <b>${convertToIST(r.datetimeGMT)} (IST)</b></p>
+                                                </a>
+                                            </div>
+                                            <div class="col-md-1 col-lg-2 col-6 px-lg-0">
+                                                <div class="game-icons">
+                                                    <span class="game-icon">
+                                                        <span class="${r.channel_id ? 'active' : ''}"></span>
+                                                    </span>
+                                                    <span class="game-icon">
+                                                        <i class="fa fa-tv v-m icon-tv cursor loginButton"></i>
+                                                    </span>
+                                                    <span class="game-icon">
+                                                        <img src="{{ asset('/') }}/assets/img/icons/ic_fancy.png" class="fancy-icon cursor">
+                                                    </span>
+                                                    <span class="game-icon">
+                                                        <img src="{{ asset('/') }}/assets/img/icons/ic_bm.png" class="bookmaker-icon cursor">
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-7 col-lg-5 col-12 pr-xl-0">
+                                                <a href="{{ route('Cricket-details', '') }}/${r.id}">
+                                                    <div class="list-event-odds">
+                                                        <div class="btn-grp-cs">
+                                                            <button class="back"><span class="odd">1.99</span></button>
+                                                            <button class="lay"><span class="odd">2</span></button>
+                                                        </div>
+                                                        <div class="btn-grp-cs">
+                                                            <button class="back"><span class="odd">-</span></button>
+                                                            <button class="lay"><span class="odd">-</span></button>
+                                                        </div>
+                                                        <div class="btn-grp-cs">
+                                                            <button class="back"><span class="odd">2</span></button>
+                                                            <button class="lay"><span class="odd">2.02</span></button>
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </tab>
+                            </div>
+                        `;
+              // Append each game HTML to the container
+              $('#game-list-container').append(gameHtml);
+            });
+          }
+          $('#loader').fadeOut();
+          
+        },
+        error: function() {
+          console.error('Failed to fetch game data.');
+        }
+      });
+    }
+
+    // Convert date from GMT to IST
+    function convertToIST(gmtDate) {
+      let date = new Date(gmtDate + 'Z'); // Append 'Z' to make it UTC
+      return date.toLocaleString('en-IN', {
+        timeZone: 'Asia/Kolkata',
+        hour12: false
+      });
+    }
+
+    // Fetch data when the document is ready
+    fetchGameData();
+    setInterval(fetchGameData, 2000);
+  });
 
   /* Script Goes Here */
 </script>
